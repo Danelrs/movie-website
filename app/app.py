@@ -1,7 +1,16 @@
-from flask import Flask, request, render_template, make_response, redirect, url_for
-import requests
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import abort, redirect, url_for
+from flask import make_response, flash
+from flask import session, jsonify
+from werkzeug.security import check_password_hash, generate_password_hash
+import mysql.connector
 
 app = Flask(__name__)
+app.secret_key = 'mysecret'
+
+
 
 def loguser():
     resp = make_response(redirect(url_for('index')))
@@ -11,6 +20,8 @@ def loguser():
 
 def isLogged():
     return request.cookies.get('token')
+
+
 
 @app.route('/', methods=['GET' , 'POST'])
 def index():
@@ -23,6 +34,8 @@ def login():
         resp = loguser()
         print('Cookies set:', resp.headers.getlist('Set-Cookie'))
         return resp
+    else:
+        flash('Invalid username/password')
     if isLogged():
         print('Already logged in. Redirecting...')
         return redirect(url_for('index'))
