@@ -34,7 +34,7 @@ header h1{
     font-size: 2rem;
     margin:0;
     text-align: center;
-    width: 75%;
+    width: 65%;
 }
 
 .search{
@@ -294,6 +294,7 @@ main{
 <body>
     
     <header>
+        <a href="{{ url_for('login') }}">Iniciar Sesion</a>
         <h1>MOVIES</h1>
         <form  id="form">
             <input type="text" placeholder="Search" id="search" class="search">

@@ -6,24 +6,30 @@ app = Flask(__name__)
 def loguser():
     resp = make_response(redirect(url_for('index')))
     maxAge = 60 * 60 
-    resp.set_cookie('token', '123', max_age=maxAge)
+    resp.set_cookie('token', '123', max_age=maxAge, path='/login')
     return resp
 
 def isLogged():
-    token = request.cookies.get('token')
-    if token is None:
-        return False
-    return True
+    return request.cookies.get('token')
 
 @app.route('/', methods=['GET' , 'POST'])
 def index():
-    if isLogged():
-        return render_template('index.html')
+    
+    return render_template('index.html')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
     if request.method == 'POST':
-        return loguser()
+        resp = loguser()
+        print('Cookies set:', resp.headers.getlist('Set-Cookie'))
+        return resp
+    if isLogged():
+        print('Already logged in. Redirecting...')
+        return redirect(url_for('index'))
     return render_template('login.html')
 
-@app.route('/register', methods=['GET'])
+
+@app.route('/register', methods=['POST','GET'])
 def register():
     return render_template('register.html')
 
