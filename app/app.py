@@ -13,10 +13,13 @@ db_connection = mysql.connector.connect(
 )
 
 def loguser(username):
-    resp = make_response(redirect(url_for('loggedin')))  # Redirige a 'loggedin'
+    resp = make_response(redirect(url_for('index')))  # Redirige a 'loggedin'
     maxAge = 60 * 60
     resp.set_cookie('token', '123', max_age=maxAge, path='/', secure=False, httponly=True)
     return resp
+
+def logged_in():
+    return request.cookies.get('token')
 
 def valid_login(username, password):
     try:
@@ -51,8 +54,8 @@ def prueba():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if 'username' in session:
-        return redirect(url_for('loggedin'))  # Redirige a 'loggedin'
+    #if 'username' in session:
+       # return redirect(url_for('loggedin'))  # Redirige a 'loggedin'
     return render_template('index.html')
 
 @app.route('/loggedin', methods=['GET', 'POST'])
@@ -66,7 +69,7 @@ def login():
         password = request.form['password']
         if valid_login(username, password):
             session['username'] = username  # Guardar el usuario en la sesión
-            return redirect(url_for('loggedin'))  # Redirige a 'loggedin'
+            return redirect(url_for('index'))  
         else:
             flash('Invalid username/password')
     return render_template('login.html')

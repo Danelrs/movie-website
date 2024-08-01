@@ -390,7 +390,7 @@ function pageCall(page){
     getMovies(url);
   }
 }
-
+/*
 document.addEventListener('DOMContentLoaded', function () {
   const menuCheckbox = document.getElementById('menu-burger');
 
@@ -402,3 +402,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   });
 });
+*/
