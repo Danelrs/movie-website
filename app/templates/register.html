@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <style>
         :root {
             --primary-color: #22254b;
@@ -107,7 +107,8 @@
         }
 
         .checkbox-container input[type="checkbox"] {
-            margin-right: 8px; /* Espacio entre el checkbox y el texto */
+            margin-right: 8px;
+            /* Espacio entre el checkbox y el texto */
         }
 
         .messages {
@@ -136,13 +137,26 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="6">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required
+                    minlength="6">
             </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
             <label for="acceptTerms">
-            <p>
-                <input type="checkbox" id="acceptTerms" name="acceptTerms" required> Acepto <a href="#" class="terms-btn">Términos y Condiciones</a></label>
+                <p>
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms" required> Acepto <a href="#"
+                        class="terms-btn">Términos y Condiciones</a>
+            </label>
             </p>
-              
+
             <button class="btnRegister" type="submit">Register</button>
         </form>
     </div>

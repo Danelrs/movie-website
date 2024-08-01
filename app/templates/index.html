@@ -416,18 +416,18 @@
 <body>
 
     <header>
-        <div class="menu">
+        <div class="menu" hidden>
             <label class="menu-div" for="menu-burger">
                 <img src="../static/bars-solid.svg" alt="menu" class="menu-btn">
             </label>
         </div>
-        <a href="{{ url_for('login') }}" class="login-text" hidden>LogIn</a>
+        <a href="{{ url_for('login') }}" class="login-text"  >LogIn</a>
         <h1>MOVIES</h1>
         <form id="form">
             <input type="text" placeholder="Search" id="search" class="search">
         </form>
     </header>
-    <input type="checkbox" id="menu-burger">
+    <input type="checkbox" id="menu-burger" hidden>
     <div id="tags"></div>
     <div id="myNav" class="overlay">
 
