@@ -309,8 +309,10 @@ function showVideos(){
   dots.forEach((dot, indx) => {
     if(activeSlide == indx){
       dot.classList.add('active');
+      dot.removeAttribute('hidden')
     }else{
       dot.classList.remove('active')
+      dot.setAttribute('hidden', true)
     }
   })
 }
@@ -401,5 +403,5 @@ document.addEventListener('DOMContentLoaded', function () {
           document.body.classList.remove('sidebar-open');
       }
   });
-});
+}); for
 */

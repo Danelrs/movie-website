@@ -10,9 +10,9 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (email, username, password) VALUES ('main@gmail.com', 'admin', 'admin');
 
-CREATE TABLE IF NOT EXISTS cookies (
+CREATE TABLE IF NOT EXISTS sessions (
     id int AUTO_INCREMENT PRIMARY KEY,
-    user_id INT foreign key references users(id),
-    time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
+    user_id INT,
+    time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foreign key (user_id) references users(id)
 )
