@@ -3,7 +3,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?'+ API_KEY;
-
+ 
 const genres = [
     {
       "id": 28,
@@ -190,7 +190,7 @@ function getMovies(url) {
               next.classList.remove('disabled')
             }
 
-            tagsEl.scrollIntoView({behavior : 'smooth'})
+          //  tagsEl.scrollIntoView({behavior : 'smooth'})
 
         }else{
             main.innerHTML= `<h1 class="no-results">No Results Found</h1>`
@@ -390,3 +390,15 @@ function pageCall(page){
     getMovies(url);
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const menuCheckbox = document.getElementById('menu-burger');
+
+  menuCheckbox.addEventListener('change', function () {
+      if (menuCheckbox.checked) {
+          document.body.classList.add('sidebar-open');
+      } else {
+          document.body.classList.remove('sidebar-open');
+      }
+  });
+});

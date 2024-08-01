@@ -21,11 +21,13 @@ def loguser():
 def isLogged():
     return request.cookies.get('token')
 
+@app.route('/prueba', methods=['GET' , 'POST'])
+def prueba():
+    return render_template('prueba.html')
 
 
 @app.route('/', methods=['GET' , 'POST'])
 def index():
-    
     return render_template('index.html')
 
 @app.route('/login', methods=['POST', 'GET'])
